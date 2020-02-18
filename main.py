@@ -18,6 +18,18 @@ def generate_password(length, digits):
     return password
 
 
+def calculate_brute_force_time(password, available_digits):
+    time = 1
+
+    for i in range(len(password)):
+        n = available_digits.index(password[i], 0, len(available_digits)) + 1
+        time *= n
+
+    days = time / (1 * 60 * 60 * 24 * 10000000)
+
+    return days
+
+
 def generate():
     available_digits = ""
 
@@ -38,6 +50,12 @@ def generate():
     password = generate_password(length, available_digits)
 
     password_variable.set(password)
+
+    days = calculate_brute_force_time(password, available_digits)
+
+    text = "Если компьютер тратит одну секунду на проверку 10,000,000 паролей, то ваш пароль нужно будет подбирать {0} дн.".format(days)
+
+    textbox.insert(END, text)
 
 
 tk = Tk()
