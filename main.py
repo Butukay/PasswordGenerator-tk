@@ -27,6 +27,7 @@ def calculate_brute_force_time(password, available_digits):
 
     try:
         days = time / (1 * 60 * 60 * 24 * 10000000)
+        days = round(days, 2)
     except OverflowError:
         return "<cлишком много>"
 
@@ -58,6 +59,7 @@ def generate():
 
     text = "Если компьютер тратит одну секунду на проверку 10,000,000 паролей, то ваш пароль нужно будет подбирать {0} дн.".format(days)
 
+    textbox.delete("1.0", END)
     textbox.insert(END, text)
 
 
