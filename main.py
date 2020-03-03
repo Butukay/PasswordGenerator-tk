@@ -25,7 +25,10 @@ def calculate_brute_force_time(password, available_digits):
         n = available_digits.index(password[i], 0, len(available_digits)) + 1
         time *= n
 
-    days = time / (1 * 60 * 60 * 24 * 10000000)
+    try:
+        days = time / (1 * 60 * 60 * 24 * 10000000)
+    except OverflowError:
+        return "<cлишком много>"
 
     return days
 
